@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="images/Dingus.jpg" />
+    <link rel="stylesheet" href="StyleSheet1.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sick Children Support</title>
+  </head>
+  <body>
+      <div id="root"></div>
+      <!--<script type="module" src="/src/main.jsx"></script>-->
+      <div class="blue-box">
+          <p class="title-text">Sick Children Website WIP</p>
+      </div>
+  
+      <button id="testButton" class="normal-button" onclick="toggleImage()">Test</button>
+      <div></div>
+      <img id="image" style="display: block" src="images/HospitalPlaceHolder1.jpg" />
+      <img id="image1" style="display: block" src="images/HospitalPlaceHolder2.jpg" />
+
+      <script>
+          function toggleImage() {
+              const image = document.getElementById('image');
+              const image1 = document.getElementById('image1');
+              if (image.style.display === 'none' || image.style.display === '') {
+                  image.style.display = 'block';
+                  image1.style.display = 'block';
+              } else {
+                  image.style.display = 'none';
+                  image1.style.display = 'none';
+              }
+          }
+      </script>
+  </body>
+</html>
