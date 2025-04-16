@@ -5,19 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="images/Dingus.jpg" />
     <link rel="stylesheet" href="StyleSheet1.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sick Children Support</title>
+    <title>Appropriate Healthcare Support</title>
   </head>
   <body>
-      <div id="root"></div>
-      <!--<script type="module" src="/src/main.jsx"></script>-->
+      
+      
       <div class="blue-box">
-          <p class="title-text">Sick Children Website WIP</p>
+          <p class="title-text">Accurate Healthcare Finder</p>
       </div>
   
-      <button id="testButton" class="normal-button" onclick="toggleImage()">Test</button>
-      <div></div>
-      <img id="image" style="display: block" src="images/HospitalPlaceHolder1.jpg" />
-      <img id="image1" style="display: block" src="images/HospitalPlaceHolder2.jpg" />
+      <!--<button id="testButton" class="normal-button" onclick="toggleImage()">Test</button>-->
+      <div>
+      </div>
+      <div class="image-layer">
+          <img id="image" style="display: block; align-content: flex-start; max-height: 200px; height: auto" src="images/HospitalPlaceHolder1.jpg" />
+          <div class="center-content">
+              <h1>Find Your Hospital</h1>
+              <div id="root"></div>
+          </div>
+          <img id="image1" style="display: block; align-content: flex-end; max-height: 200px; height: auto" src="images/HospitalPlaceHolder2.jpg" />
+          <script type="module" src="/src/main.jsx"></script>
+      </div>
 
       <script>
           function toggleImage() {
@@ -31,6 +39,7 @@
                   image1.style.display = 'none';
               }
           }
+
       </script>
   </body>
 </html>

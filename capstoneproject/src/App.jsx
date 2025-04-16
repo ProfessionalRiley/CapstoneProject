@@ -1,34 +1,56 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import * as XLSX from 'xlsx'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [data, setData] = useState([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    const handleFileUpload = (e) => {
+        const reader = new FileReader();
+        reader.readAsBinaryString(e.target.files[0]);
+        reader.onload = (e) => {
+            const data = e.target.result;
+            const workbook = XLSX.read(data, { type: 'binary' });
+            const sheetName = workbook.SheetNames[0];
+            const sheet = workbook.Sheets[sheetName];
+            const parsedData = XLSX.utils.sheet_to_json(sheet);
+            setData(parsedData);
+            console.log(parsedData);
+        };
+    };
+
+    return (
+      
+      <div className="App">
+
+          <input
+            type="file"
+            accept=".csv,.xlsx,.xls"
+            onChange={handleFileUpload}
+          />
+
+          {data.length > 0 && (
+              <table className="table">
+                  <thead>
+                      <tr>
+                          {Object.keys(data[0]).map((key) => (
+                              <th key={key}>{key}</th>
+                          ))}
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {data.map((row, i) => (
+                          <tr key={i}>
+                              {Object.values(row).map((value, j) => (
+                                  <td key={j}>{value}</td>
+                              ))}
+                          </tr>
+                      ))}
+                  </tbody>
+              </table>
+          )}
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
   )
 }
 
